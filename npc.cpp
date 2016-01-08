@@ -21,10 +21,10 @@ bool godMode = false;
 // The colors to use for our stats.
 const conout *AColors[] =
 {
-    &Red,
-    &Green,
-    &Yellow,
-    &Cyan,
+	&Red,
+	&Green,
+	&Yellow,
+	&Cyan,
 };
 
 // The filename we save and load from.
@@ -72,13 +72,13 @@ void npc::hurt(int val)
 		val -= 25;
 	else if (this->flags & WetTowel)
 		val -= 10;
-    if (val < 0)
-        val = 0;
+	if (val < 0)
+		val = 0;
 
-    this->currHP -= val;
+	this->currHP -= val;
 
-    if (this->currHP < 0)
-        this->currHP = 0;
+	if (this->currHP < 0)
+		this->currHP = 0;
 
 	// Undeath?
 	if (this->currHP == 0 && this->flags & GOODF)
@@ -86,7 +86,7 @@ void npc::hurt(int val)
 		// Get outta death free!
 		this->currHP = this->maxHP;
 
-        con << Green << " killing " << Def << "him,\n";
+		con << Green << " killing " << Def << "him,\n";
 		con << Cyan << "But he uses a Get-Out-Of-Death-Free Card," << Def;
 
 		// Make sure they lose the card!
@@ -98,13 +98,13 @@ void npc::hurt(int val)
 // Display a character's stats on one line.
 void npc::minishow() const
 {
-    con << White << C_MY_NAME << Def << ", ";
-    
-    for (int i = Str; i < NumAttr; i++)
-        con << *AColors[i] << this->attr[i] << Def << ", ";
+	con << White << C_MY_NAME << Def << ", ";
 
-    con << White << this->currHP << Def << '/' 
-        << DarkGray << this->maxHP << Def << ", ";
+	for (int i = Str; i < NumAttr; i++)
+		con << *AColors[i] << this->attr[i] << Def << ", ";
+
+	con << White << this->currHP << Def << '/' 
+		<< DarkGray << this->maxHP << Def << ", ";
 
 	if (this->flags & Player)
 		con << Cyan << this->xp;
@@ -120,7 +120,7 @@ void npc::minishow() const
 	if (this->flags & GOODF)
 		con << Cyan << " GOODF Card";
 
-    con << Def;
+	con << Def;
 }
 
 // Display a player's stats.
@@ -147,7 +147,7 @@ void npc::ask()
 //      ep      The experience points.
 //		f		The flags.
 void npc::set(const char *nme, short str, short dex, 
-        short iq, short hlt, int chp, int mhp, double ep, byte f)
+		short iq, short hlt, int chp, int mhp, double ep, byte f)
 {
 	this->setName(nme);
 	this->setAttr(Str, str);
@@ -163,54 +163,54 @@ void npc::set(const char *nme, short str, short dex,
 // Write a player's stats to disk.
 void npc::save() const
 {
-    ofstream ofl(FileName);
+	ofstream ofl(FileName);
 
-    ofl << C_MY_NAME << '\n';
+	ofl << C_MY_NAME << '\n';
 
-    for (int i = Str; i < NumAttr; i++)
-        ofl << this->attr[i] << '\n';
+	for (int i = Str; i < NumAttr; i++)
+		ofl << this->attr[i] << '\n';
 
-    ofl << this->currHP << '\n';
-    ofl << this->maxHP << '\n';
-    ofl << this->xp << '\n';
+	ofl << this->currHP << '\n';
+	ofl << this->maxHP << '\n';
+	ofl << this->xp << '\n';
 	ofl << (int)this->flags << '\n';
 
-    // Close the file.
-    ofl.close();
+	// Close the file.
+	ofl.close();
 }
 
 // Get a player's stats from disk.
 void npc::load()
 {
-    ifstream ifl(FileName);
+	ifstream ifl(FileName);
 
-    string temp;
-    getline(ifl, temp);
+	string temp;
+	getline(ifl, temp);
 
-    for (int i = Str; i < NumAttr; i++)
-    {
-        ifl >> this->attr[i];
-	    eatline(ifl);
-    }
+	for (int i = Str; i < NumAttr; i++)
+	{
+		ifl >> this->attr[i];
+		eatline(ifl);
+	}
 
-    ifl >> this->currHP;
-    eatline(ifl);
+	ifl >> this->currHP;
+	eatline(ifl);
 
-    ifl >> this->maxHP;
-    eatline(ifl);
+	ifl >> this->maxHP;
+	eatline(ifl);
 
-    ifl >> this->xp;
-    eatline(ifl);
+	ifl >> this->xp;
+	eatline(ifl);
 
 	int f;
 	ifl >> f;
-    eatline(ifl);
+	eatline(ifl);
 
-    ifl.close();
+	ifl.close();
 
-    // Set up the player.
-    this->set(temp.c_str(), this->attr[Str], this->attr[Dex], this->attr[Iq],
-        this->attr[Hlt], this->currHP, this->maxHP, this->xp, f);
+	// Set up the player.
+	this->set(temp.c_str(), this->attr[Str], this->attr[Dex], this->attr[Iq],
+		this->attr[Hlt], this->currHP, this->maxHP, this->xp, f);
 }
 
 struct sorty
@@ -231,12 +231,12 @@ struct sorty
 // Return: true if we live.
 bool npc::fight(auto_ptr<npc> horde[], int num)
 {
-    if (horde == 0 || num < 1)
-        // Die biiizzzzzzatch!
-        return false;
-    
-    // Wipe the map.
-    con.Clear();
+	if (horde == 0 || num < 1)
+		// Die biiizzzzzzatch!
+		return false;
+
+	// Wipe the map.
+	con.Clear();
 
 /*
 	sorty guava;
@@ -306,114 +306,114 @@ bool npc::fight(auto_ptr<npc> horde[], int num)
 	.00000000000001%
 */
 
-    con << "You see...\n";
-    for (int i = 0; i < num; i++)
-    {
-        horde[i]->minishow();
-        con << '\n';
-    }
-    pak();
+	con << "You see...\n";
+	for (int i = 0; i < num; i++)
+	{
+		horde[i]->minishow();
+		con << '\n';
+	}
+	pak();
 
-    // Track how many died.
-    int killed = 0;
+	// Track how many died.
+	int killed = 0;
 
-    // Track the round number.
-    int round = 0;
+	// Track the round number.
+	int round = 0;
 
 	// Where to put da dead
 	Queue<npc *> bodies;
 
-    while (this->alive() && killed < num)
-    {
-        con.Clear();
+	while (this->alive() && killed < num)
+	{
+		con.Clear();
 
-        con << "Round #" << ++round << '\n';
+		con << "Round #" << ++round << '\n';
 
-        // I go first.
-        killed += this->attack(horde, num, bodies);
+		// I go first.
+		killed += this->attack(horde, num, bodies);
 
-        // Their turn.
-        for (int i = 0; i < num; i++)
-        {
-            if (!horde[i]->alive())
-                // Skip the dead people.
-                continue;
+		// Their turn.
+		for (int i = 0; i < num; i++)
+		{
+			if (!horde[i]->alive())
+				// Skip the dead people.
+				continue;
 
-            auto_ptr<npc> temp[] = { auto_ptr<npc>(this) };
+			auto_ptr<npc> temp[] = { auto_ptr<npc>(this) };
 
-            int howManyDied = horde[i]->attack(temp, 1, bodies);
+			int howManyDied = horde[i]->attack(temp, 1, bodies);
 			temp[0].release();
 			if (howManyDied)
-                // Bidness, no one else has to go.
-                break;
-        }
-        pak();
-    }
+				// Bidness, no one else has to go.
+				break;
+		}
+		pak();
+	}
 
 	npc *deadGuy;
-    if (this->alive())
-    {
-        char answer = '?';
-        while (bodies.Dequeue(deadGuy))
-        {
-            double ep = deadGuy->Exp();
+	if (this->alive())
+	{
+		char answer = '?';
+		while (bodies.Dequeue(deadGuy))
+		{
+			double ep = deadGuy->Exp();
 
-            con << White << C_NAME(deadGuy) << Def
-                << " was worth " << Magenta << ep
-                << Def << " XP's!\n";
+			con << White << C_NAME(deadGuy) << Def
+				<< " was worth " << Magenta << ep
+				<< Def << " XP's!\n";
 
-            int old_level = int(this->xp / 100);
+			int old_level = int(this->xp / 100);
 
-            this->xp += ep;
+			this->xp += ep;
 
-            // Display the player's stats.
-            this->minishow();
-            con << '\n';
+			// Display the player's stats.
+			this->minishow();
+			con << '\n';
 
-            int new_level = int(this->xp / 100);
+			int new_level = int(this->xp / 100);
 
-            for (int j = 0; j < new_level - old_level; j++)
-            {
-                while (!strchr("sdihSDIH", answer))
-                {
-                    con << "What would you like to do (S)tr, (D)ex, (I)q, or (H)lt ? _\b";
-                    cin >> answer;
-                    eatline();
-                }
+			for (int j = 0; j < new_level - old_level; j++)
+			{
+				while (!strchr("sdihSDIH", answer))
+				{
+					con << "What would you like to do (S)tr, (D)ex, (I)q, or (H)lt ? _\b";
+					cin >> answer;
+					eatline();
+				}
 
-                // What did they pick?
-                switch (tolower(answer))
-                {
-                    case 's':
-                        ++this->attr[Str];
-                    break;
-                    
-                    case 'd':
-                        ++this->attr[Dex];
-                    break;
+				// What did they pick?
+				switch (tolower(answer))
+				{
+					case 's':
+						++this->attr[Str];
+					break;
+					
+					case 'd':
+						++this->attr[Dex];
+					break;
 
-                    case 'i':
-                        ++this->attr[Iq];
-                    break;
-    
-                    case 'h':
-                        ++this->attr[Hlt];
-                    break;
-                }
+					case 'i':
+						++this->attr[Iq];
+					break;
+	
+					case 'h':
+						++this->attr[Hlt];
+					break;
+				}
 
-                // Buff up!
-                const int Buff = this->attr[Hlt] * 2;
-                this->maxHP += Buff;
-                this->currHP += Buff;
-            }
-        }
+				// Buff up!
+				const int Buff = this->attr[Hlt] * 2;
+				this->maxHP += Buff;
+				this->currHP += Buff;
+			}
+		}
 
 		// Show our final tally!
 		this->minishow();
 		pak();
-    }
-    
-    return this->alive();
+	}
+	
+	return this->alive();
 }
 
 // Handle one particular battle.
@@ -428,22 +428,22 @@ bool npc::fight(auto_ptr<npc> horde[], int num)
 // Return: how many died.
 int npc::attack(auto_ptr<npc> victims[], int num, Queue<npc *> &bodies) const
 {
-    if (!victims || num < 1)
-        return 0;
+	if (!victims || num < 1)
+		return 0;
 
-    int died = 0;
+	int died = 0;
 
-    int target = 0;
+	int target = 0;
 
-    // Auto target!
-    for (int i = 0; i < num; i++)
-    {
-        if (victims[i]->alive())
-        {
-            target = i;
-            break;
-        }
-    }
+	// Auto target!
+	for (int i = 0; i < num; i++)
+	{
+		if (victims[i]->alive())
+		{
+			target = i;
+			break;
+		}
+	}
 
 	// The attacker could have multiple attacks...
 	int numAttacks = getAOE();
@@ -527,7 +527,7 @@ int npc::attack(auto_ptr<npc> victims[], int num, Queue<npc *> &bodies) const
 		}
 	}
 
-    return died;
+	return died;
 }
 
 // Calculate the amount of love to give.
@@ -535,13 +535,13 @@ int npc::attack(auto_ptr<npc> victims[], int num, Queue<npc *> &bodies) const
 // Return: the amount of damage.
 int npc::damage() const
 {
-    int base = this->attr[Str];
+	int base = this->attr[Str];
 
-    int mod = base / 2;
+	int mod = base / 2;
 
-    base += random(mod, -mod);
+	base += random(mod, -mod);
 
-    return base;
+	return base;
 }
 
 // Display us in color!
@@ -554,27 +554,27 @@ int npc::damage() const
 // Return:	The updated output.
 Console & operator <<(Console &l, const npc &r)
 {
-    l << White << static_cast<const string &>(r) << '\n';
+	l << White << static_cast<const string &>(r) << '\n';
 
-    // English names for our stats.    
-    const char *Names[] =
-    {
-        "Strength\t\t: ", "Dexterity\t\t: ", "Intelligence\t: ",
-        "Health\t\t\t: "        
-    };
+	// English names for our stats.    
+	const char *Names[] =
+	{
+		"Strength\t\t: ", "Dexterity\t\t: ", "Intelligence\t: ",
+		"Health\t\t\t: "        
+	};
 
-    for (int i = Str; i < NumAttr; i++)
-        l << *AColors[i] << Names[i] << r.attr[i] << '\n'; 
-           
-    l << White << "HP\t\t\t\t: " << r.currHP << '/' 
-        << r.maxHP << '\n';
-    
-    l << "HP %\t\t\t: " 
-        << int(r.currHP / double(r.maxHP) * 100) << '\n';
+	for (int i = Str; i < NumAttr; i++)
+		l << *AColors[i] << Names[i] << r.attr[i] << '\n'; 
 
-    l << Magenta << "ToHit%\t\t\t: " << r.tohit() << '\n';
+	l << White << "HP\t\t\t\t: " << r.currHP << '/' 
+		<< r.maxHP << '\n';
 
-    l << Cyan << "Experience\t\t: " << r.xp << '\n';
+	l << "HP %\t\t\t: " 
+		<< int(r.currHP / double(r.maxHP) * 100) << '\n';
+
+	l << Magenta << "ToHit%\t\t\t: " << r.tohit() << '\n';
+
+	l << Cyan << "Experience\t\t: " << r.xp << '\n';
 
 	l << LightGray << "Gear\t\t\t: ";
 
@@ -587,7 +587,7 @@ Console & operator <<(Console &l, const npc &r)
 	if (r.flags & GOODF)
 		l << Cyan << "GOOD Card";
 
-    l << '\n' << Def;
+	l << '\n' << Def;
 
 	// Keep goin' if you want.
 	return l;
@@ -603,27 +603,27 @@ Console & operator <<(Console &l, const npc &r)
 // Return:	The updated output.
 ostream & operator <<(ostream &l, const npc &r)
 {
-    l << static_cast<const string &>(r) << '\n';
+	l << static_cast<const string &>(r) << '\n';
 
-    // English names for our stats.    
-    const char *Names[] =
-    {
-        "Strength\t: ", "Dexterity\t: ", "Intelligence\t: ",
-        "Health\t\t: "        
-    };
+	// English names for our stats.    
+	const char *Names[] =
+	{
+		"Strength\t: ", "Dexterity\t: ", "Intelligence\t: ",
+		"Health\t\t: "        
+	};
 
-    for (int i = Str; i < NumAttr; i++)
-        l << Names[i] << r.attr[i] << '\n'; 
-           
-    l << "HP\t\t: " << r.currHP << '/' 
-        << r.maxHP << '\n';
-    
-    l << "HP %\t\t: " 
-        << int(r.currHP / double(r.maxHP) * 100) << '\n';
+	for (int i = Str; i < NumAttr; i++)
+		l << Names[i] << r.attr[i] << '\n'; 
 
-    l << "ToHit%\t\t: " << r.tohit() << '\n';
+	l << "HP\t\t: " << r.currHP << '/' 
+		<< r.maxHP << '\n';
 
-    l << "Experience\t: " << r.xp << '\n';
+	l << "HP %\t\t: " 
+		<< int(r.currHP / double(r.maxHP) * 100) << '\n';
+
+	l << "ToHit%\t\t: " << r.tohit() << '\n';
+
+	l << "Experience\t: " << r.xp << '\n';
 
 	l << "Gear\t\t: ";
 
@@ -658,8 +658,8 @@ istream & operator >>(istream &l, npc &r)
 {
 	cin.exceptions(ios_base::failbit);
 
-    con << "What is your name : ?";
-    string temp;
+	con << "What is your name : ?";
+	string temp;
 	getline(l, temp);
 
 	string mine(temp);
@@ -701,59 +701,58 @@ istream & operator >>(istream &l, npc &r)
 	random access
 */
 
-    // Cheat time.
-    if ("god" == mine)
-    {
-        r.set(temp.c_str(), 1000, 1000, 1000, 1000, 10000, 10000, 100000, Player | Mardoc);
-        return l;
-    }
+	// Cheat time.
+	if ("god" == mine)
+	{
+		r.set(temp.c_str(), 1000, 1000, 1000, 1000, 10000, 10000, 100000, Player | Mardoc);
+		return l;
+	}
 
-    
-    const char *Names[] =
-    {
-        "\"strength\"", "\"dexterity\"",  "\"intelligence\"",
-        "\"health\""        
-    };
+	
+	const char *Names[] =
+	{
+		"\"strength\"", "\"dexterity\"",  "\"intelligence\"",
+		"\"health\""
+	};
 
-    for (int i = Str; i < NumAttr; i++)
-    {   
-        while (true)
-        {         
-            con << "What is your " << *AColors[i] << Names[i] 
-                << Def << " : (3 -> 18) ? __\b\b";
-            if (l >> r.attr[i] && r.attr[i] > 2 && r.attr[i] < 19)
-                break;
-        }
-        eatline(l);
-    }
-    
-    while (true)
-    {   
-        con << "What is your max hit points (1+) ? ";
-        if (l >> r.maxHP && r.maxHP > 0 && r.maxHP < r.attr[Hlt] * 6)
-            break;
-    }
-    eatline(l);
+	for (int i = Str; i < NumAttr; i++)
+	{
+		while (true)
+		{
+			con << "What is your " << *AColors[i] << Names[i] 
+				<< Def << " : (3 -> 18) ? __\b\b";
+			if (l >> r.attr[i] && r.attr[i] > 2 && r.attr[i] < 19)
+				break;
+		}
+		eatline(l);
+	}
 
-    while (true)
-    {
-        con << "What is your current hit points (1+) ? ";
-        if (l >> r.currHP && r.currHP > 0 && r.currHP <= r.maxHP)
-            break;
-        
-    }
-    eatline(l);
-
-    while (true)
-    {
-        con << "What is your experience points (0+) ? ";
-        if (l >> r.xp && r.xp >= 0)
-            break;
+	while (true)
+	{
+		con << "What is your max hit points (1+) ? ";
+		if (l >> r.maxHP && r.maxHP > 0 && r.maxHP < r.attr[Hlt] * 6)
+			break;
 	}
 	eatline(l);
 
-    r.set(temp.c_str(), r.attr[Str], r.attr[Dex], r.attr[Iq],
-        r.attr[Hlt], r.currHP, r.maxHP, r.xp, Player);
+	while (true)
+	{
+		con << "What is your current hit points (1+) ? ";
+		if (l >> r.currHP && r.currHP > 0 && r.currHP <= r.maxHP)
+			break;
+	}
+	eatline(l);
+
+	while (true)
+	{
+		con << "What is your experience points (0+) ? ";
+		if (l >> r.xp && r.xp >= 0)
+			break;
+	}
+	eatline(l);
+
+	r.set(temp.c_str(), r.attr[Str], r.attr[Dex], r.attr[Iq],
+		r.attr[Hlt], r.currHP, r.maxHP, r.xp, Player);
 
 	// Don't throw any more exceptions, cin...
 	cin.exceptions(0);
@@ -764,7 +763,7 @@ istream & operator >>(istream &l, npc &r)
 
 void npc::assault() const
 {
-	 con << BGRed << FGWhite << "Sp00n's" << Def << ' ';
+	con << BGRed << FGWhite << "Sp00n's" << Def << ' ';
 }
 
 // Brackets operator.
@@ -813,7 +812,7 @@ const short & npc::operator [](int i) const	throw(bad_index, bad_exception)
 // Display what is unique to this class.
 void npc::data(void) const
 {
-	npc::show();	
+	npc::show();
 }
 
 // Display a short form of what is unique to this class.

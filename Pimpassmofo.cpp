@@ -31,4 +31,4 @@ void Pimpassmofo::assault() const
 {
 	 con << BGRed << FGWhite << "shafts" << Def << ' ';
 }
-	
+

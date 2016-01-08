@@ -37,17 +37,17 @@ class npc : private string
 {
 	// Grant the following class full access to self.  Note:
 	//	I have no access to HIS private/protected info.
-//	friend class Enc;
+	//friend class Enc;
 	friend void Enc::e1(npc &n);
 
-    // Our attributes.
-    short attr[NumAttr];
-    
-    // Current and max hit points.
-    int currHP, maxHP;
+	// Our attributes.
+	short attr[NumAttr];
 
-    // Experience points.
-    double xp; 
+	// Current and max hit points.
+	int currHP, maxHP;
+
+	// Experience points.
+	double xp; 
 
 	// Our flags.
 	byte flags;
@@ -85,22 +85,22 @@ public:
 	/* Accessors */
 	/*************/
 
-    // Return:	Our name.
-    const string &getName() const
+	// Return:	Our name.
+	const string &getName() const
 	{
 		return C_MY_NAME;
 	}
-    
-    // Our attributes.
-    short getAttr(int which) const
+	
+	// Our attributes.
+	short getAttr(int which) const
 	{
 		if (which < Str || which >= NumAttr)
 			return 0;
 		return this->attr[which];
 	}
-    
-    // Current and max hit points.
-    int getCurrHP() const
+	
+	// Current and max hit points.
+	int getCurrHP() const
 	{
 		return this->currHP;
 	}
@@ -109,8 +109,8 @@ public:
 		return this->maxHP;
 	}
 
-    // Experience points.
-    double getXp() const
+	// Experience points.
+	double getXp() const
 	{
 		return this->xp; 
 	}
@@ -127,17 +127,17 @@ public:
 
 	// Change our name to "n".
 	void setName(const char *n);
-    
-    // Alter our attributes.
-    void setAttr(int which, short val)
+	
+	// Alter our attributes.
+	void setAttr(int which, short val)
 	{
 		if (which < Str || which >= NumAttr || val < 0)
 			return;
 		this->attr[which] = val;
 	}
-    
-    // Current and max hit points.
-    void setCurrHP(int val)
+	
+	// Current and max hit points.
+	void setCurrHP(int val)
 	{
 		if (val < 0)
 			val = 0;
@@ -155,8 +155,8 @@ public:
 		this->maxHP = val;
 	}
 
-    // Experience points.
-    void setXp(double val)
+	// Experience points.
+	void setXp(double val)
 	{
 		if (val < 0)
 			val = 0;
@@ -316,13 +316,13 @@ public:
 	short &operator [](int i) throw(bad_index, bad_exception);
 	const short &operator [](int i) const throw(bad_index, bad_exception);
 
-	protected:
+protected:
 
-		// Display what is unique to this class.
-		virtual void data(void) const;
+	// Display what is unique to this class.
+	virtual void data(void) const;
 
-		// Display a short form of what is unique to this class.
-		virtual void minidata(void) const;
+	// Display a short form of what is unique to this class.
+	virtual void minidata(void) const;
 };
 
 #endif

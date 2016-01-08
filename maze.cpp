@@ -31,8 +31,8 @@ void maze::set(const char * const pzl[], int r, int c)
 	// Out with the old!
 	this->mz.clear();
 
-    this->rows = r;
-    this->cols = c;
+	this->rows = r;
+	this->cols = c;
 
 	if (0 == r || 0 == c || 0 == pzl)
 		// No maze?  Adios!
@@ -50,19 +50,19 @@ void maze::draw(int i, int j) const
 	switch (this->mz[i][j])
 	{
 	case Entrance:
-        con << Green << 'ï' << Def;
+		con << Green << 'ï' << Def;
 		break;
 	case Exit:
-        con << BGRed << FGWhite << 'ï' << Def;
+		con << BGRed << FGWhite << 'ï' << Def;
 		break;
 	case 'a':
-        con << Yellow << 'ð' << Def;
+		con << Yellow << 'ð' << Def;
 		break;
 	case 'b':
-        con << Cyan << 'ë' << Def;
+		con << Cyan << 'ë' << Def;
 		break;
 	case 'c':
-        con << Red << 'ä' << Def;
+		con << Red << 'ä' << Def;
 		break;
 	case 'd':
 	case 'e':  
@@ -87,7 +87,7 @@ void maze::draw(int i, int j) const
 		con << Green << this->mz[i][j] << Def;
 		break;
 	default:
-        con << this->mz[i][j];
+		con << this->mz[i][j];
 		break;
 	}
 }
@@ -95,12 +95,12 @@ void maze::draw(int i, int j) const
 // Display a map.
 void maze::show() const
 {
-    for (int i = 0; i < this->rows; i++)
-    {
-        for (int j = 0; j < this->cols; j++)
+	for (int i = 0; i < this->rows; i++)
+	{
+		for (int j = 0; j < this->cols; j++)
 			this->draw(i, j);
-        con << '\n';
-    }
+		con << '\n';
+	}
 }
 
 // Search for an entrance into a map.
@@ -111,17 +111,17 @@ void maze::show() const
 // Return: true if found.
 bool maze::findentrance(int &ex, int &why) const
 {
-    for (why = 0; why < this->rows; why++)
-    {
+	for (why = 0; why < this->rows; why++)
+	{
 		string::size_type where = this->mz[why].find('1');
 		if (string::npos != where)
 		{
 			// Gotcha!
-            ex = static_cast<int>(where);
-            return true;
-        }
-    }
-    return false;
+			ex = static_cast<int>(where);
+			return true;
+		}
+	}
+	return false;
 }
 
 // Locate a particular spot within a maze.

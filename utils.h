@@ -10,9 +10,9 @@ using std::istream;
 template <typename Any>
 void Swap(Any &a, Any &b)
 {
-    Any temp = a;
-    a = b;
-    b = temp;
+	Any temp = a;
+	a = b;
+	b = temp;
 }
 
 // Seed the random number generator.

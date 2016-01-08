@@ -106,11 +106,11 @@ public:
 	}
 
 private:
-    // The map.
-    vector<string> mz;
+	// The map.
+	vector<string> mz;
 
-    // The size of the map.
-    int rows, cols;
+	// The size of the map.
+	int rows, cols;
 };
 
 #endif

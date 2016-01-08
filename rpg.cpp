@@ -59,10 +59,10 @@ float FindTargetAngle(maze & m, int x, int y);
 int main(void)
 {
 	// Let's see some trailing zero's & 2 decimal places.
-    cout << fixed << setprecision(2);
+	cout << fixed << setprecision(2);
 
-    // Seed the random number generator.    
-    randomize();
+	// Seed the random number generator.    
+	randomize();
 	
 #if 0
 	alvis bob("Fireball", 3, "Bob");
@@ -84,79 +84,79 @@ int main(void)
 		con << "Example() failed in some mysterious way.\n";
 	}
 #else
-    // The map to wander through.
-    const char *Map[] =
-    {
-        "ллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл",
-        "л1  лa            лaл                aл                 e+л       л           л",
-        "ллл лллbллллллл л л л л ллллллллллл ллл ллллллллллллллллллл л ллл л ллллллллл л",
-        "лaл     л   л   л   л л   л     лaл     л   л               л л   л л   л   л л",
-        "л ллл ллл л л ллллллл ллл л ллл л л ллллл л л ллллллллллллллл л ллллл л л л л л",
-        "л л   л   л   л       л+л   л   л л л   лaл   лaл     л    aл л л   л л   л л л",
-        "л л л л ллллллл лллллллdл ллл ллл л л л ллллл л л л л л ллллл л л л л ллллл л л",
-        "л л лaл  aл   лaл       л  aл     лaл л   л   л   лaл   л     л л лaл   л     л",
-        "л л ллл ллл л ллл ллл ллл ллллл ллллл ллл л ллл ллллллл л ллллл л ллллл л ллллл",
-        "л л   л   лaл   л  aл c л л   л л   лaл     л   л       л лaл   л     лaл     л",
-        "л ллл л л ллл л ллллл л л л л л л л ллл ллллл ллл ллллллл л л ллл ллл ллл ллл л",
-        "л   л л л л   л     л л л лaл л л л л   лa    л        aл   л     лaл     лgл л",
-        "ллл л л л л ллллллл л л л ллл л л л л ллллллллл л ллллллл ллллллллл л ллллл л л",
-        "л     лaл   л     л   л л   л л л л л   л   л   л л   л   л   лa    л   лaл л л",
-        "л ллллллллллл ллл ллллл ллл л л л л ллл л л л ллл л л л ллл л ллл ллллл л л л л",
-        "л   лa        л   л  aл     л л   л     л л   лa  л лaл     л     л     л л л л",
-        "л л ллл ллллллл ллл ллл ллллл ллл ллллллл ллллллл л ллллл ллллллллл ллллл л л л",
-        "л л     л   лaл лa    л лa      л      aл лaл   лaл   л   л     л+л     л   л л",
-        "л ллллллл л л л ллллл л ллл ллл ллллллллл л л л ллллл л ллл ллл лfллл л л ллл л",
-        "л лa      л   л   лaл л   л   л         л л л л     л   л   лa    л   л   л   л",
-        "л ллл ллллллл ллл л л л л ллл ллллллллл л л л ллллл ллллл ллллллллл л ллллл ллл",
-        "л     лa       aл     лaл     лaaaaaaaa     л    aл                 л    aл  2л",
-        "ллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл",
-    };
+	// The map to wander through.
+	const char *Map[] =
+	{
+		"ллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл",
+		"л1  лa            лaл                aл                 e+л       л           л",
+		"ллл лллbллллллл л л л л ллллллллллл ллл ллллллллллллллллллл л ллл л ллллллллл л",
+		"лaл     л   л   л   л л   л     лaл     л   л               л л   л л   л   л л",
+		"л ллл ллл л л ллллллл ллл л ллл л л ллллл л л ллллллллллллллл л ллллл л л л л л",
+		"л л   л   л   л       л+л   л   л л л   лaл   лaл     л    aл л л   л л   л л л",
+		"л л л л ллллллл лллллллdл ллл ллл л л л ллллл л л л л л ллллл л л л л ллллл л л",
+		"л л лaл  aл   лaл       л  aл     лaл л   л   л   лaл   л     л л лaл   л     л",
+		"л л ллл ллл л ллл ллл ллл ллллл ллллл ллл л ллл ллллллл л ллллл л ллллл л ллллл",
+		"л л   л   лaл   л  aл c л л   л л   лaл     л   л       л лaл   л     лaл     л",
+		"л ллл л л ллл л ллллл л л л л л л л ллл ллллл ллл ллллллл л л ллл ллл ллл ллл л",
+		"л   л л л л   л     л л л лaл л л л л   лa    л        aл   л     лaл     лgл л",
+		"ллл л л л л ллллллл л л л ллл л л л л ллллллллл л ллллллл ллллллллл л ллллл л л",
+		"л     лaл   л     л   л л   л л л л л   л   л   л л   л   л   лa    л   лaл л л",
+		"л ллллллллллл ллл ллллл ллл л л л л ллл л л л ллл л л л ллл л ллл ллллл л л л л",
+		"л   лa        л   л  aл     л л   л     л л   лa  л лaл     л     л     л л л л",
+		"л л ллл ллллллл ллл ллл ллллл ллл ллллллл ллллллл л ллллл ллллллллл ллллл л л л",
+		"л л     л   лaл лa    л лa      л      aл лaл   лaл   л   л     л+л     л   л л",
+		"л ллллллл л л л ллллл л ллл ллл ллллллллл л л л ллллл л ллл ллл лfллл л л ллл л",
+		"л лa      л   л   лaл л   л   л         л л л л     л   л   лa    л   л   л   л",
+		"л ллл ллллллл ллл л л л л ллл ллллллллл л л л ллллл ллллл ллллллллл л ллллл ллл",
+		"л     лa       aл     лaл     лaaaaaaaa     л    aл                 л    aл  2л",
+		"ллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл",
+	};
 
-    // Calculate the size of the map.
-    const int Cols = (const int)strlen(Map[0]);
-    const int Rows = sizeof Map / sizeof Map[0];
+	// Calculate the size of the map.
+	const int Cols = (const int)strlen(Map[0]);
+	const int Rows = sizeof Map / sizeof Map[0];
 
-    maze sealab(Map, Rows, Cols);
+	maze sealab(Map, Rows, Cols);
 	RayCaster spacelab(con.Cols(), con.Rows()-1, FOV);
 	spacelab.SetMap(Map, Cols, Rows);
 
-    // The player's location.
-    float x, y,theta, targettheta;
+	// The player's location.
+	float x, y,theta, targettheta;
 	int tx, ty;
 	targettheta = theta = 0;
 
-    if (sealab.findentrance(tx, ty))
-    {
-        char answer;
-        do
-        {
-            con << "What would you like to do (N)pc, (R)andom, (A)sk or (L)oad ? _\b";
-            cin >> answer;
-            eatline();
-            answer = tolower(answer);
+	if (sealab.findentrance(tx, ty))
+	{
+		char answer;
+		do
+		{
+			con << "What would you like to do (N)pc, (R)andom, (A)sk or (L)oad ? _\b";
+			cin >> answer;
+			eatline();
+			answer = tolower(answer);
 
-        } while (answer != 'n' && answer != 'r' && answer != 'a' && answer != 'l');
+		} while (answer != 'n' && answer != 'r' && answer != 'a' && answer != 'l');
 
-        // The starting stat for our players.
-        const int Average = 15;
+		// The starting stat for our players.
+		const int Average = 15;
 
-        const int Start_hp = 30;
-					  
-        auto_ptr<npc> hero(new npc);
+		const int Start_hp = 30;
 
-        // What did they pick?
-        switch (answer)
-        {
-            case 'n':
-                hero->set("Quinn", Average, Average, Average, Average,
-                    Start_hp, Start_hp, 0, Player);            
-            break;
+		auto_ptr<npc> hero(new npc);
 
-            case 'r':
+		// What did they pick?
+		switch (answer)
+		{
+			case 'n':
+				hero->set("Quinn", Average, Average, Average, Average,
+					Start_hp, Start_hp, 0, Player);            
+			break;
+
+			case 'r':
 				hero->setFlags(hero->getFlags() | Player);
-            break;
+			break;
 
-            case 'a':
+			case 'a':
 			while (true)
 				try
 				{
@@ -169,20 +169,20 @@ int main(void)
 					eatline();
 				}
 //                hero->ask();
-            break;
+			break;
 
-            default:
-                hero->load();
-            break;
-        }
+			default:
+				hero->load();
+			break;
+		}
 
 		// Did they get the Get-out-of-death-free (GOODF) card?
 		if (rand() % 100 == 0)
 			hero->setFlags(hero->getFlags() | GOODF);
-                
-        // Remove the annoying blinking cursor.
-        con.CursorOn(false);
-        
+
+		// Remove the annoying blinking cursor.
+		con.CursorOn(false);
+		
 		// Function pointers to all our fixed encounters.
 		//	Function pointers can serve as functors.
 		void (*pf[])(npc &) =
@@ -218,14 +218,14 @@ int main(void)
 		};
 		const int NumWEs = sizeof wes / sizeof wes[0];
 
-        // Main game loop.
+		// Main game loop.
 		bool showPath = false;
 		bool autoWalk = false;
 		x = tx + 0.5f; y = ty + 0.5f;
 		spacelab.SetCameraOrient(x,y,theta);
 
-        while (hero->alive())
-        {
+		while (hero->alive())
+		{
 				//Show our RayCasted World
 				spacelab.Draw();
 				spacelab.ShowToScreen();
@@ -244,25 +244,25 @@ int main(void)
 						con << Green << char(2) << Def;
 				}
 
-                // Display the player's stats.
+				// Display the player's stats.
 				con.Goto(con.Rows() - 2);
-                hero->minishow();
+				hero->minishow();
 				con << (180/PI) * targettheta;
 				con.Goto(con.Rows() - 1, con.Cols() - 20 - 1);
 				con << "Crates: " << Enc::GetCrates() << ' ';
 				cout << tme;
 
 				if (Exit == sealab.getSpot(y, x))
-                    break;
+					break;
 
-                // Fixed encounters.
+				// Fixed encounters.
 				char symbol = sealab.getSpot(y, x);
 				if (isalpha(symbol))
 				{
 					int which = symbol - 'a';
 					(*pf[which])(*hero);
-                    sealab.setSpot(y, x, ' ');
-                    continue;
+					sealab.setSpot(y, x, ' ');
+					continue;
 				}
 				if (sealab.getSpot(y,x) == '+')
 				{
@@ -287,19 +287,19 @@ int main(void)
 				if (!hero->alive())
 					continue;
 
-            int key;
-            do
-            {
-              key = con.get();
+			int key;
+			do
+			{
+			  key = con.get();
 
-            } while (!autoWalk && key == 0);
+			} while (!autoWalk && key == 0);
 
-            if (key == Esc)
-            {
-                // Die bizzzzzzzatch!
+			if (key == Esc)
+			{
+				// Die bizzzzzzzatch!
 				hero->setCurrHP(0);
-                break;
-            }
+				break;
+			}
 
 			if (Tab == key)
 			{
@@ -325,12 +325,12 @@ int main(void)
 				continue;
 			}
 
-            if (key == F5)
-            {
-                // Save to disk.
-                hero->save();
-                continue;
-            }
+			if (key == F5)
+			{
+				// Save to disk.
+				hero->save();
+				continue;
+			}
 
 			// Cheatin'!
 			if (key < Extended && (isalnum(key) || ispunct(key) ))
@@ -378,11 +378,11 @@ int main(void)
 				//Sleep(10);
 			}
 
-            // Store the player's current position.
+			// Store the player's current position.
 			float ox, oy;
 			ox = x; oy = y;
 
-            if (key == Up)
+			if (key == Up)
 			{
 				x += STEP * cosf(theta);
 				y -= STEP * sinf(theta);
@@ -399,7 +399,7 @@ int main(void)
 
 				}
 			}
-            if (key == Down)
+			if (key == Down)
 			{
 				x -= STEP * cosf(theta);
 				y += STEP * sinf(theta);
@@ -407,13 +407,13 @@ int main(void)
 				if (spacelab.CastRay(x,y,theta + PI) < 0.1f)
 				{	x = ox;	y = oy; }
 			}
-            if (key == Right)
-                theta -= ROTSTEP;
-            if (key == Left)
-                theta += ROTSTEP;
+			if (key == Right)
+				theta -= ROTSTEP;
+			if (key == Left)
+				theta += ROTSTEP;
 
 			spacelab.SetCameraOrient(x,y,theta);
-            
+			
 			if(ox != x || oy != y)
 			{
 				
@@ -432,21 +432,21 @@ int main(void)
 				if (!(tme.getMinutes() % when))
 					hero->heal(hero->getMaxHP() / 10);
 			}
-        }
-        
-        // Wipe the map.
-        con.Clear();        
+		}
+		
+		// Wipe the map.
+		con.Clear();        
 
-        if (hero->alive())
-            con << Green << "Alvislua!\n" << Def;
-        else
-            con << BGRed << FGWhite << "You loose your HDTV!\n" << Def;
+		if (hero->alive())
+			con << Green << "Alvislua!\n" << Def;
+		else
+			con << BGRed << FGWhite << "You loose your HDTV!\n" << Def;
 
 		con << *hero;
 //        hero->show();
-    }
-    else
-        con << BGRed << FGWhite << "No Entrance Found Bizzzzzzatch!";
+	}
+	else
+		con << BGRed << FGWhite << "No Entrance Found Bizzzzzzatch!";
 #endif
 
 	// Get ready to return to the operating system.
@@ -557,96 +557,96 @@ float FindTargetAngle(maze & m, int x, int y)
 
 // ================================================
 
-    //int nummorons;
-    //con << "How many morons are on the roof ? ";
-    //cin >> nummorons;
+	//int nummorons;
+	//con << "How many morons are on the roof ? ";
+	//cin >> nummorons;
 
-    //int *morons = new int[nummorons];
+	//int *morons = new int[nummorons];
 
-    //morons[0] = 10;
-    //
-    //con << morons[0];
+	//morons[0] = 10;
+	//
+	//con << morons[0];
 
-    //delete [] morons;
+	//delete [] morons;
 
 // ===========================================
 
-    //int *p = new int;
+	//int *p = new int;
 
-    //*p = 90;
+	//*p = 90;
 
-    //con << *p;
+	//con << *p;
 
-    //delete p;
+	//delete p;
 
-    //p = new int;
+	//p = new int;
 
-    //*p = 60;
+	//*p = 60;
 
-    //delete p;
+	//delete p;
 
 
 // ================================
 
-    //int x = 90;
+	//int x = 90;
 
-    //int y = 100;
+	//int y = 100;
 
-    //int *p = &x;
+	//int *p = &x;
 
-    //con << *p;
+	//con << *p;
 
-    //p = &y;
+	//p = &y;
 
-    //con << *p;
+	//con << *p;
 // ================================
 
-    //int x = 10;
+	//int x = 10;
 
-    //int y;
+	//int y;
 
-    //if (x == 20)
-    //    y = 100;
-    //else
-    //    y = 200;
+	//if (x == 20)
+	//    y = 100;
+	//else
+	//    y = 200;
 
-    //y = (x == 20) ? 100 : 200;
-
-
-    //npc ray;
-
-    //npc &x = ray;
-
-    //set(&x, "Ray", 3, 3, 3, 3, 5, 5, 0);
-
-    //show(&ray);
-
-    //con << '\n';
-
-    //show(&x);
-
-    //delete [] ray.name;
+	//y = (x == 20) ? 100 : 200;
 
 
-    //int x = 100;
+	//npc ray;
 
-    //int *p = &x;
+	//npc &x = ray;
 
-    //int &y = x;
+	//set(&x, "Ray", 3, 3, 3, 3, 5, 5, 0);
 
-    //con << "x  = " << x << '\n';
-    //con << "*p = " << *p << '\n';
-    //con << "y  = " << y;
+	//show(&ray);
 
+	//con << '\n';
 
-    //int x = 100;
+	//show(&x);
 
-    //int &y = x;
-
-    //y = 50;
+	//delete [] ray.name;
 
 
-    //con << x;
+	//int x = 100;
+
+	//int *p = &x;
+
+	//int &y = x;
+
+	//con << "x  = " << x << '\n';
+	//con << "*p = " << *p << '\n';
+	//con << "y  = " << y;
+
+
+	//int x = 100;
+
+	//int &y = x;
+
+	//y = 50;
+
+
+	//con << x;
 
 // BITWISE Business
 
